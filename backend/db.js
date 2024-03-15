@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const link = require("./connectionLink");
 mongoose.connect(link);
+
+// Listen for the 'connected' event
+mongoose.connection.on('connected', () => {
+  console.log('MongoDB connected');
+});
+
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
